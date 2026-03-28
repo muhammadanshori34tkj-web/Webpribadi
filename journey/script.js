@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (cmdText === 'mkdir') {
                 res.innerText = "mkdir: missing operand";
             } else if (cmdText === 'skills') {
-                res.innerHTML = "[=>] Networking: 85%<br>[=>] Linux System: 80%<br>[=>] Vulnerability Assessment: 70%";
+                res.innerHTML = "[=>] Networking: 887%<br>[=>] Linux System: 90%<br>[=>] Vulnerability Assessment: 89%";
             } else if (cmdText === 'sudo') {
                 res.innerText = "Faris is already root. No need for sudo.";
             } else if (cmdText.startsWith('./ping-sweep.sh')) {
