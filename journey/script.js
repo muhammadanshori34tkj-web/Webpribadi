@@ -78,11 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Logika Command Terminal
             if (cmdText === 'help') {
-                res.innerHTML = "Available commands:<br>- <b>whoami</b>: Display current user<br>- <b>ls</b>: List directory contents<br>- <b>cd</b>: Change directory<br>- <b>skills</b>: Show skill levels<br>- <b>clear</b>: Clear terminal screen<br>- <b>reboot</b>: Restart system<br>- <b>sudo</b>: Execute command as superuser";
+                res.innerHTML = "Available commands:<br>- <b>whoami</b>: Display current user<br>- <b>ls</b>: List directory contents<br>- <b>cd</b>: Change directory<br>- <b>skills</b>: Show skill levels<br>- <b>clear</b>: Clear terminal screen<br>- <b>reboot</b>: Restart system<br>- <b>sudo</b>: Execute command as superuser<br>- <b>./ping-sweep.sh</b>: Run network ping sweep script";
             } else if (cmdText === 'whoami') {
-                res.innerText = "root (Superuser privileges active)";
+                res.innerText = "Muhammad Faris Anshori";
             } else if (cmdText === 'ls') {
-                res.innerHTML = "<span style='color: var(--kali-blue)'>information_gathering/</span>  <span style='color: var(--kali-blue)'>network_scanning/</span>  <span style='color: var(--kali-red)'>exploits.sh</span>  portfolio.txt  certificates.dir";
+                res.innerHTML = "<span style='color: var(--kali-blue)'>information_gathering/</span>  <span style='color: var(--kali-blue)'>network_scanning/</span>  <span style='color: var(--kali-red)'>ping-sweep.sh</span>  portfolio.txt  certificates.dir";
             } else if (cmdText.startsWith('cd')) {
                 res.innerText = "bash: cd: permission denied or directory locked.";
             } else if (cmdText === 'mkdir') {
@@ -91,6 +91,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 res.innerHTML = "[=>] Networking: 85%<br>[=>] Linux System: 80%<br>[=>] Vulnerability Assessment: 70%";
             } else if (cmdText === 'sudo') {
                 res.innerText = "Faris is already root. No need for sudo.";
+            } else if (cmdText.startsWith('./ping-sweep.sh')) {
+                // SIMULASI SCRIPT PING-SWEEP.SH
+                const args = cmdText.split(' ');
+                if (args.length !== 2) {
+                    res.innerText = "Usage: ./ping-sweep.sh [network]\nExample: ./ping-sweep.sh 192.168.1";
+                } else {
+                    const subnet = args[1];
+                    // Validasi input sederhana (harus 3 blok angka dipisah titik)
+                    if (!/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(subnet)) {
+                         res.innerText = "Invalid subnet format. Use format like: 192.168.1";
+                    } else {
+                        res.innerHTML = `Starting ping sweep on ${subnet}.0/24...<br>`;
+                        output.appendChild(res);
+
+                        // Daftar IP palsu yang merespon (seolah-olah ada host aktif)
+                        const fakeActiveHosts = [1, 15, 42, 105, 254]; 
+                        let delay = 600;
+
+                        // Looping memunculkan host aktif dengan jeda waktu biar kelihatan asli
+                        fakeActiveHosts.forEach(hostIP => {
+                            setTimeout(() => {
+                                const hostLog = document.createElement('div');
+                                hostLog.style.color = "#ccc";
+                                hostLog.innerText = `${subnet}.${hostIP}`;
+                                output.appendChild(hostLog);
+                                output.scrollTop = output.scrollHeight; // Auto scroll ke bawah
+                            }, delay);
+                            delay += Math.floor(Math.random() * 600) + 300; // Jeda acak
+                        });
+
+                        // Selesai
+                        setTimeout(() => {
+                            const doneLog = document.createElement('div');
+                            doneLog.style.color = "var(--kali-cyan)";
+                            doneLog.innerText = "[*] Ping sweep completed. " + fakeActiveHosts.length + " hosts up.";
+                            output.appendChild(doneLog);
+                            output.scrollTop = output.scrollHeight;
+                        }, delay + 500);
+
+                        input.value = '';
+                        return; // Berhenti di sini agar tidak memunculkan output kosong di bawah
+                    }
+                }
             } else if (cmdText === 'clear') {
                 output.innerHTML = '';
             } else if (cmdText === 'reboot') {
@@ -100,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 res.innerText = `bash: ${cmdText}: command not found`;
             }
 
+            // Memasukkan hasil command ke dalam layar terminal
             if (cmdText !== 'clear' && cmdText !== '') {
                 output.appendChild(res);
             }
